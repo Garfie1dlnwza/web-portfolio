@@ -1,5 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// This is your Prisma schema file
 
 generator client {
     provider = "prisma-client-js"
@@ -11,11 +10,207 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
+//// 1) PROFILE – โปรไฟล์เจ้าของเว็บ (ส่วนตัวเราเอง) ////
+
+model Profile {
+    id          Int     @id @default(autoincrement())
+    fullName    String
+    headline    String // เช่น "Mobile & Web Developer"
+    bio         String? // แนะนำตัวสั้น ๆ
+    email       String  @unique
+    location    String?
+    avatarUrl   String?
+    resumeUrl   String? // PDF CV/Resume
+    githubUrl   String?
+    linkedinUrl String?
+    websiteUrl  String?
+
+    socialLinks SocialLink[] // ลิงก์อื่น ๆ ที่อยากใส่ (X, IG ฯลฯ)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model SocialLink {
+    id       Int    @id @default(autoincrement())
+    label    String
+    platform String
+    url      String
+    order    Int    @default(0)
+
+    profileId Int
+    profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([name])
+    @@index([profileId])
+}
+
+//// 2) SKILL – Tech Stack + Category + ใช้กับ Project ได้ ////
+
+model Skill {
+    id          Int           @id @default(autoincrement())
+    name        String        @unique // "Next.js"
+    slug        String        @unique // "nextjs"
+    iconUrl     String? // URL icon
+    category    SkillCategory
+    description String? // อธิบาย skill เพิ่มเติม
+
+    projectLinks ProjectSkill[] // join กับ Project
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([category])
+}
+
+enum SkillCategory {
+    FRONTEND
+    BACKEND
+    MOBILE
+    DATABASE
+    DEVOPS
+    TOOLS
+    OTHER
+}
+
+//// 3) PROJECT – ผลงานหลักที่อยากโชว์ ////
+
+model Project {
+    id               Int     @id @default(autoincrement())
+    title            String
+    slug             String  @unique // /projects/ku-super-app
+    shortDescription String // สรุปสั้น ๆ สำหรับการ์ด
+    description      String? // รายละเอียดเพิ่ม
+    content          String? // เก็บ Markdown ถ้าต้องการ long form
+    thumbnailUrl     String?
+    coverImageUrl    String?
+
+    githubUrl String?
+    demoUrl   String?
+
+    featured Boolean       @default(false) // โชว์หน้าแรก
+    status   ProjectStatus @default(ACTIVE)
+
+    startDate DateTime?
+    endDate   DateTime?
+
+    // many-to-many ผ่าน join table เพื่อจัดลำดับ + highlight ได้
+    techStackLinks ProjectSkill[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([featured, createdAt])
+    @@index([status])
+    @@index([startDate])
+}
+
+enum ProjectStatus {
+    ACTIVE
+    ARCHIVED
+}
+
+model ProjectSkill {
+    projectId Int
+    skillId   Int
+
+    project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+    skill   Skill   @relation(fields: [skillId], references: [id]) // No cascade here
+
+    highlight Boolean @default(false)
+    order     Int     @default(0)
+
+    @@id([projectId, skillId])
+    @@index([skillId])
+}
+
+//// 4) EXPERIENCE – ประสบการณ์ทำงาน / ฝึกงาน ////
+
+model Experience {
+    id          Int       @id @default(autoincrement())
+    position    String // "Mobile Developer Intern"
+    company     String // "Kasetsart University"
+    location    String?
+    startDate   DateTime
+    endDate     DateTime?
+    isCurrent   Boolean   @default(false)
+    description String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([startDate])
+    @@index([isCurrent])
+}
+
+//// 5) EDUCATION – การศึกษา ////
+
+model Education {
+    id          Int       @id @default(autoincrement())
+    degree      String // "B.Sc. Computer Science"
+    field       String? // "Computer Science"
+    institution String // "Kasetsart University"
+    location    String?
+    startDate   DateTime
+    endDate     DateTime?
+    grade       String? // เกรด/เกียรตินิยม ถ้าอยากใส่
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([startDate])
+}
+
+//// 6) BLOG POST – สำหรับเขียนบทความ / note ////
+
+model Post {
+    id          Int        @id @default(autoincrement())
+    title       String
+    slug        String     @unique
+    excerpt     String?
+    content     String // Markdown/MDX
+    coverImage  String?
+    status      PostStatus @default(DRAFT)
+    publishedAt DateTime?
+
+    // Tag หลายอันต่อ 1 Post
+    tags PostTag[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([slug])
+    @@index([status, publishedAt])
+}
+
+enum PostStatus {
+    DRAFT
+    PUBLISHED
+    ARCHIVED
+}
+
+model Tag {
+    id   Int    @id @default(autoincrement())
+    name String
+    slug String @unique
+
+    posts PostTag[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([name])
+}
+
+model PostTag {
+    postId Int
+    tagId  Int
+
+    post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+    tag  Tag  @relation(fields: [tagId], references: [id])
+
+    @@id([postId, tagId])
+    @@index([tagId])
 }
