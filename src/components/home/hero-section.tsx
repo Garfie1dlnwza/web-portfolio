@@ -6,10 +6,10 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowRight, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { Icons } from "@/constants/icons";
 import { useI18n } from "@/components/language-provider";
+import { DeveloperCard } from "@/components/developer-card";
 
 export function HeroSection() {
   const mouseX = useMotionValue(0);
@@ -58,13 +58,14 @@ export function HeroSection() {
           >
             <Badge
               variant="outline"
-              className="gap-2 rounded-full border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-amber-600 hover:bg-amber-500/20 dark:text-amber-400"
+              className="gap-2 rounded-full border-slate-200 bg-white/50 px-4 py-1.5 text-slate-600 backdrop-blur-md transition-colors hover:border-slate-300 hover:bg-white dark:border-neutral-700 dark:bg-[#121212] dark:text-slate-300 dark:hover:border-neutral-600 dark:hover:bg-black/25"
             >
               <span className="relative flex h-2 w-2">
+                {/* จุดไฟยังคงเป็นสี Amber เพื่อให้เข้ากับ Theme แต่ดูไม่ตะโกน */}
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-500"></span>
               </span>
-              {t.hero.badge}
+              <span className="text-xs font-medium">{t.hero.badge}</span>
             </Badge>
           </motion.div>
 
@@ -101,26 +102,27 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="bg-primary rounded-full text-white shadow-[0_0_20px_-5px_rgba(245,158,11,0.4)] transition-all hover:bg-amber-600 hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.6)]"
+              className="group rounded-full bg-neutral-900 px-8 text-white shadow-lg shadow-neutral-900/20 transition-all hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-neutral-900/40 active:scale-95 dark:bg-neutral-50 dark:text-neutral-900 dark:shadow-white/10 dark:hover:bg-neutral-200"
             >
-              <Link href="#projects" className="gap-2 font-bold">
+              <Link href="#projects" className="gap-2 font-semibold">
                 {t.hero.actions.viewProjects}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
 
+            {/* 2. Secondary Button (GitHub) - เพิ่ม Amber Accent ตอน Hover */}
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full border-slate-200 bg-white/50 backdrop-blur-sm hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300 dark:hover:bg-slate-800"
+              className="rounded-full border-neutral-200 bg-white/50 text-neutral-600 transition-all hover:border-amber-200 hover:bg-amber-50/50 hover:text-amber-600 active:scale-95 dark:border-neutral-800 dark:bg-transparent dark:text-neutral-400 dark:hover:border-amber-900/50 dark:hover:bg-amber-950/20 dark:hover:text-amber-400"
             >
               <Link
-                href="https://github.com/yourusername"
+                href="https://github.com/Garfie1dlnwza"
                 target="_blank"
                 className="gap-2"
               >
-                <Terminal className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                <Terminal className="h-4 w-4" />
                 {t.hero.actions.github}
               </Link>
             </Button>
@@ -128,8 +130,8 @@ export function HeroSection() {
         </div>
 
         <div className="relative flex h-[500px] w-full flex-col items-center justify-center">
-          {/* วงโคจรชั้นใน */}
-          <OrbitingCircles iconSize={40} radius={140} duration={16} speed={1.2}>
+          {/* ชั้นใน */}
+          <OrbitingCircles iconSize={40} radius={320} duration={16} speed={1.2}>
             <Icons.flutter />
             <Icons.nextjs />
             <Icons.typescript />
@@ -137,7 +139,7 @@ export function HeroSection() {
             <Icons.firebase />
           </OrbitingCircles>
 
-          {/* วงโคจรชั้นนอก */}
+          {/* ชั้นนอก */}
           <OrbitingCircles
             iconSize={40}
             radius={220}
@@ -153,7 +155,6 @@ export function HeroSection() {
             <Icons.gofiber />
           </OrbitingCircles>
 
-          {/* VS Code Mac Style Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
@@ -163,103 +164,7 @@ export function HeroSection() {
             }}
             className="relative z-20 w-full max-w-md"
           >
-            <Card className="overflow-hidden border-slate-200 bg-white/90 shadow-2xl backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/90">
-              {/* Header: Mac Window Controls */}
-              <CardHeader className="flex h-10 flex-row items-center justify-between border-b border-slate-200 bg-slate-50/80 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/80">
-                <div className="flex gap-1.5">
-                  <div className="h-3 w-3 rounded-full bg-red-500" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                  <div className="h-3 w-3 rounded-full bg-green-500" />
-                </div>
-                <div className="font-mono text-xs text-slate-500 opacity-70">
-                  developer.tsx
-                </div>
-                <div className="w-10" />
-              </CardHeader>
-
-              {/* Content: Code Snippet */}
-              <CardContent className="overflow-x-auto p-6 font-mono text-sm leading-relaxed">
-                <div className="flex text-slate-800 dark:text-slate-300">
-                  <span className="mr-4 w-6 text-right text-slate-400 select-none">
-                    1
-                  </span>
-                  <span className="text-purple-600 dark:text-purple-400">
-                    const
-                  </span>
-                  <span className="ml-2 text-yellow-600 dark:text-yellow-200">
-                    garfield
-                  </span>
-                  <span className="mx-2 text-slate-400">=</span>
-                  <span className="text-purple-600 dark:text-purple-400">
-                    new
-                  </span>
-                  <span className="ml-2 text-yellow-600 dark:text-yellow-200">
-                    Developer
-                  </span>
-                  <span className="text-slate-500 dark:text-slate-300">
-                    ({`{`}
-                  </span>
-                </div>
-
-                <div className="flex text-slate-800 dark:text-slate-300">
-                  <span className="mr-4 w-6 text-right text-slate-400 select-none">
-                    2
-                  </span>
-                  <span className="ml-4 text-blue-600 dark:text-blue-300">
-                    name
-                  </span>
-                  <span className="text-slate-400">:</span>
-                  <span className="ml-2 text-green-600 dark:text-green-300">
-                    {"Rawipon Ponsarutwanit"}
-                  </span>
-                  <span className="text-slate-400">,</span>
-                </div>
-
-                <div className="flex text-slate-800 dark:text-slate-300">
-                  <span className="mr-4 w-6 text-right text-slate-400 select-none">
-                    3
-                  </span>
-                  <span className="ml-4 text-blue-600 dark:text-blue-300">
-                    role
-                  </span>
-                  <span className="text-slate-400">:</span>
-                  <span className="ml-2 text-green-600 dark:text-green-300">
-                    {["Full-Stack", "Mobile"]}
-                  </span>
-                  <span className="text-slate-400">,</span>
-                </div>
-
-                <div className="flex text-slate-800 dark:text-slate-300">
-                  <span className="mr-4 w-6 text-right text-slate-400 select-none">
-                    4
-                  </span>
-                  <span className="ml-4 text-blue-600 dark:text-blue-300">
-                    skills
-                  </span>
-                  <span className="text-slate-400">:</span>
-                  <span className="ml-2 text-green-600 dark:text-green-300">
-                    {[
-                      "JavaScript",
-                      "TypeScript",
-                      "React",
-                      "Next.js",
-                      "Flutter",
-                    ].join(", ")}
-                  </span>
-                </div>
-
-                <div className="flex text-slate-800 dark:text-slate-300">
-                  <span className="mr-4 w-6 text-right text-slate-400 select-none">
-                    5
-                  </span>
-                  <span className="text-slate-500 dark:text-slate-300">
-                    {"}"})
-                  </span>
-                  <span className="text-slate-400">;</span>
-                  <span className="ml-1 inline-block h-4 w-2 animate-pulse bg-amber-500 align-middle"></span>
-                </div>
-              </CardContent>
-            </Card>
+            <DeveloperCard />
           </motion.div>
         </div>
       </div>
