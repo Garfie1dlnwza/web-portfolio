@@ -28,11 +28,6 @@ export const skills = {
   Languages: [
     { name: "Python", icon: SiPython, color: "group-hover/icon:text-blue-500" },
     {
-      name: "JavaScript",
-      icon: SiJavascript,
-      color: "group-hover/icon:text-yellow-400",
-    },
-    {
       name: "TypeScript",
       icon: SiTypescript,
       color: "group-hover/icon:text-blue-600",
@@ -60,8 +55,11 @@ export const skills = {
       icon: SiFlutter,
       color: "group-hover/icon:text-cyan-500",
     },
-    { name: "HTML5", icon: SiHtml5, color: "group-hover/icon:text-orange-600" },
-    { name: "CSS3", icon: SiCss3, color: "group-hover/icon:text-blue-600" },
+    {
+      name: "Tailwind CSS",
+      icon: SiCss3,
+      color: "group-hover/icon:text-blue-500",
+    },
   ],
   "Backend & DB": [
     {

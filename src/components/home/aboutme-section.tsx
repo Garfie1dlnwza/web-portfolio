@@ -2,17 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Code2, Heart, Eye, Grid3X3 } from "lucide-react";
+import { Code2, Heart, Eye, Grid3X3, Sparkles } from "lucide-react";
 import { PixelatedCanvas } from "../ui/pixelated-canvas";
 import { lifestyleImages, profileImage } from "@/constants/image";
-import { skills } from "@/constants/skills";
 import { translations } from "@/constants/i18n";
 import { useI18n } from "@/components/language-provider";
+import { SocialDock } from "@/components/social-dock";
+
 export const AboutSection = () => {
   const { language } = useI18n();
   const t = translations[language];
   const [isPixelated, setIsPixelated] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Focus Areas
+  const focusAreas = ["Full Stack", "Mobile App", "UX/UI"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -42,8 +46,8 @@ export const AboutSection = () => {
 
         {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 lg:gap-6">
-          {/* 1. Main Bio & Tech Stack */}
-          <div className="group relative col-span-1 row-span-1 flex flex-col justify-between overflow-hidden rounded-3xl bg-neutral-100 p-8 md:col-span-2 dark:bg-neutral-900">
+          {/* 1. Main Bio & Connect */}
+          <div className="group relative col-span-1 row-span-1 flex flex-col justify-between overflow-hidden rounded-3xl bg-neutral-100 p-8 transition-colors hover:bg-neutral-50 md:col-span-2 dark:bg-neutral-900 dark:hover:bg-neutral-800/80">
             <div>
               <div className="mb-4 flex items-center gap-2 text-amber-600 dark:text-amber-500">
                 <Code2 className="h-5 w-5" />
@@ -51,40 +55,42 @@ export const AboutSection = () => {
                   {t.aboutSection.devLifeBadge}
                 </span>
               </div>
-              <h3 className="mb-4 text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+              <h3 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-neutral-50">
                 {t.aboutSection.name}
               </h3>
-              <p className="mb-6 leading-relaxed text-neutral-600 dark:text-neutral-400">
+              <p className="mb-8 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
                 {t.aboutSection.bio}
               </p>
             </div>
 
-            {/* Skills Grid */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {Object.entries(skills).map(([group, items]) => (
-                <div key={group} className="flex flex-col gap-3">
-                  <h4 className="text-[10px] font-bold tracking-widest text-neutral-400 uppercase dark:text-neutral-500">
-                    {group}
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {items.map((tech) => (
-                      <div
-                        key={tech.name}
-                        className="group/icon relative flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:bg-neutral-800"
-                        title={tech.name}
-                      >
-                        <tech.icon
-                          className={`h-5 w-5 transition-colors duration-300 ${tech.color}`}
-                        />
-                      </div>
-                    ))}
-                  </div>
+            {/* Bottom Section: Focus Areas + Social Links */}
+            <div className="mt-auto flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              {/* Left: Focus Tags */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-neutral-400 uppercase">
+                  <Sparkles className="h-3 w-3" />
+                  <span>Core Focus</span>
                 </div>
-              ))}
+                <div className="flex flex-wrap gap-2">
+                  {focusAreas.map((area) => (
+                    <span
+                      key={area}
+                      className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-medium text-neutral-600 transition-all hover:border-amber-200 hover:text-amber-600 dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:border-amber-500/50 dark:hover:text-amber-400"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Social Links Dock */}
+              <div className="w-full lg:w-auto">
+                <SocialDock />
+              </div>
             </div>
           </div>
 
-          {/* 2. Portrait Image */}
+          {/* 2. Portrait Image (ส่วนนี้คงเดิม) */}
           <div className="relative col-span-1 min-h-[300px] overflow-hidden rounded-3xl bg-neutral-200 md:row-span-2 dark:bg-neutral-800">
             <button
               onClick={() => setIsPixelated(!isPixelated)}
@@ -96,8 +102,6 @@ export const AboutSection = () => {
                 <Grid3X3 className="h-5 w-5" />
               )}
             </button>
-
-            {/* Profile Slideshow */}
             {profileImage.map((src, idx) => (
               <div
                 key={idx}
@@ -137,8 +141,6 @@ export const AboutSection = () => {
                 </div>
               </div>
             ))}
-
-            {/* Translated Overlay Text */}
             <div className="pointer-events-none absolute bottom-0 left-0 z-20 w-full bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 pt-24">
               <p className="font-heading text-xl font-bold text-white shadow-sm">
                 {t.aboutSection.portrait.title}
@@ -149,7 +151,7 @@ export const AboutSection = () => {
             </div>
           </div>
 
-          {/* 3. Lifestyle Slideshow */}
+          {/* 3. Lifestyle Slideshow (ส่วนนี้คงเดิม) */}
           <div className="relative col-span-1 flex min-h-[200px] items-center justify-center overflow-hidden rounded-3xl bg-neutral-900 md:col-span-2">
             {lifestyleImages.map((src, index) => (
               <div
@@ -163,7 +165,7 @@ export const AboutSection = () => {
                     src={src}
                     alt=""
                     fill
-                    className="scale-110 object-cover opacity-50 blur-xl grayscale-[20%]"
+                    className="scale-110 object-cover opacity-50 blur-xl grayscale-20"
                   />
                 </div>
                 <div className="absolute inset-0 z-10 p-4">
@@ -192,7 +194,7 @@ export const AboutSection = () => {
           </div>
         </div>
 
-        {/* Footer Info (Translated Quote) */}
+        {/* Footer Info */}
         <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4">
           <div className="rounded-3xl border border-neutral-200 bg-white p-6 md:col-span-3 dark:border-neutral-800 dark:bg-neutral-950/50">
             <p className="font-heading text-lg font-medium text-neutral-800 dark:text-neutral-200">
