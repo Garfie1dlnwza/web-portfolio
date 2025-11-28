@@ -56,7 +56,7 @@ export function DeveloperCard() {
           <span className="ml-4 text-blue-600 dark:text-blue-300">role</span>
           <span className="text-slate-400">:</span>
           <span className="ml-2 text-green-600 dark:text-green-300">
-            {["Full-Stack", "Mobile"]}
+            {["Full-Stack", "Mobile-Developer"].join(" | ")}
           </span>
           <span className="text-slate-400">,</span>
         </div>
@@ -69,7 +69,6 @@ export function DeveloperCard() {
           <span className="text-slate-400">:</span>
           <span className="ml-2 text-green-600 dark:text-green-300">
             {[
-              "JavaScript",
               "TypeScript",
               "React",
               "Next.js",

@@ -44,6 +44,18 @@ export const translations = {
       link: "Resume",
       download: "Download Resume",
     },
+    educationSection: {
+      title: "Education",
+      description:
+        "My learning journey and the key foundations that have shaped who I am.",
+    },
+    educationCard: {
+      current: "Current",
+      file: {
+        cv: "Download CV",
+        portfolio: "Download Portfolio",
+      },
+    },
   },
   th: {
     nav: {
@@ -89,6 +101,17 @@ export const translations = {
     resume: {
       link: "Resume",
       download: "Download Resume",
+    },
+    educationSection: {
+      title: "การศึกษา",
+      description: "เส้นทางการเรียนรู้และรากฐานสำคัญที่หล่อหลอมตัวตนของผม",
+    },
+    educationCard: {
+      current: "ปัจจุบัน",
+      file: {
+        cv: "ดาวน์โหลด CV",
+        portfolio: "ดาวน์โหลด Portfolio",
+      },
     },
   },
 } as const;

@@ -22,14 +22,17 @@ export const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about" className="relative overflow-hidden py-24">
+    <section
+      id="about"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#F0F0F0] px-6 py-24 text-slate-900 transition-colors duration-300 md:py-32 dark:bg-[#121212] dark:text-slate-200"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-12 flex flex-col items-center text-center">
-          <span className="mb-2 text-sm font-bold tracking-wider text-amber-600 uppercase dark:text-amber-500">
+          <span className="mb-2 text-sm font-bold tracking-wider text-amber-600 uppercase sm:text-lg dark:text-amber-500">
             {t.aboutSection.headerBadge}
           </span>
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-100">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-neutral-900 sm:text-6xl dark:text-neutral-100">
             {t.aboutSection.title}
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
@@ -193,11 +196,11 @@ export const AboutSection = () => {
         <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4">
           <div className="rounded-3xl border border-neutral-200 bg-white p-6 md:col-span-3 dark:border-neutral-800 dark:bg-neutral-950/50">
             <p className="font-heading text-lg font-medium text-neutral-800 dark:text-neutral-200">
-              "{t.aboutSection.quote.part1}
+              {t.aboutSection.quote.part1}
               <span className="text-amber-600 dark:text-amber-500">
                 {t.aboutSection.quote.highlight}
               </span>
-              {t.aboutSection.quote.part2}"
+              {t.aboutSection.quote.part2}
             </p>
           </div>
           <div className="flex items-center justify-center rounded-3xl bg-amber-100 p-6 text-amber-700 md:col-span-1 dark:bg-amber-900/30 dark:text-amber-400">
