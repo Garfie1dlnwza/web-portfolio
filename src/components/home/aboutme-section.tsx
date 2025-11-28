@@ -28,7 +28,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#F0F0F0] px-6 py-24 text-slate-900 transition-colors duration-300 md:py-32 dark:bg-[#121212] dark:text-slate-200"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-neutral-50 px-6 py-24 text-slate-900 transition-colors duration-300 md:py-32 dark:bg-[#121212] dark:text-slate-200"
     >
       <div className="container mx-auto px-4">
         {/* Header */}
@@ -48,7 +48,9 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 lg:gap-6">
           {/* 1. Main Bio & Connect */}
           <div className="group relative col-span-1 row-span-1 flex flex-col justify-between overflow-hidden rounded-3xl bg-neutral-100 p-8 transition-colors hover:bg-neutral-50 md:col-span-2 dark:bg-neutral-900 dark:hover:bg-neutral-800/80">
-            <div>
+            {/* Decorative background */}
+            <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-amber-50 via-white to-neutral-200 dark:from-[#232323] dark:via-[#121212] dark:to-[#232323]" />
+            <div className="relative z-10">
               <div className="mb-4 flex items-center gap-2 text-amber-600 dark:text-amber-500">
                 <Code2 className="h-5 w-5" />
                 <span className="text-sm font-bold tracking-wider uppercase">
