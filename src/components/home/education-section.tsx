@@ -11,7 +11,7 @@ export const EducationSection = () => {
   return (
     <section
       id="education"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#F0F0F0] px-6 py-24 text-slate-900 transition-colors duration-300 md:py-32 dark:bg-[#121212] dark:text-slate-200"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-6 py-24 text-slate-900 transition-colors duration-300 md:py-32 dark:bg-[#121212] dark:text-slate-200"
     >
       <div className="container mx-auto px-4">
         {/* Minimal Header */}
