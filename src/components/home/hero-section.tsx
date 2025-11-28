@@ -28,7 +28,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#F0F0F0] px-6 py-24 text-slate-900 transition-colors duration-300 md:py-32 dark:bg-[#121212] dark:text-slate-200"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-neutral-50  px-6 py-24 text-slate-900 transition-colors duration-300 md:py-32 dark:bg-[#121212] dark:text-slate-200"
       onMouseMove={handleMouseMove}
     >
       {/* Background Grid */}
