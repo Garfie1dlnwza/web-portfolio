@@ -5,6 +5,8 @@ import {
   SiFlutter,
   SiFirebase,
   SiReact,
+  SiLaravel,
+  SiSvelte,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
@@ -62,5 +64,17 @@ export const projectData = [
     link: "#",
     github: "#",
     image: "/projects/java-app.png",
+  },
+  {
+    id: "nisit-d-den",
+    title: "Nisit D Den",
+
+    tech: [
+      { name: "Laravel", icon: SiLaravel, color: "text-red-500" },
+      { name: "Svelte", icon: SiSvelte, color: "text-orange-500" },
+    ],
+    link: "#",
+    github: "#",
+    image: "/projects/nisit-d-den.png",
   },
 ];

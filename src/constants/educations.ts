@@ -21,8 +21,8 @@ export const educationData = [
     file: "/cv.pdf",
     fileKey: "cv",
     description: {
-      th: "เรียนรู้เกี่ยวกับ Database Design, โครงสร้างข้อมูล, Cloud Computing, Devops & Agile, อัลกอริทึม, Software Engineering, Web & Mobile Development และ AI. GPAX : 3.14",
-      en: "Studied Database Design, Data Structures, Cloud Computing, Devops & Agile, Algorithms, Software Engineering, Web & Mobile Development, and AI. GPAX: 3.14",
+      th: "เรียนรู้เกี่ยวกับ Database Design, โครงสร้างข้อมูล, Cloud Computing, Devops & Agile, อัลกอริทึม, Software Engineering, Web & Mobile Development และ AI. GPAX : 3.20",
+      en: "Studied Database Design, Data Structures, Cloud Computing, Devops & Agile, Algorithms, Software Engineering, Web & Mobile Development, and AI. GPAX: 3.20",
     },
     tags: {
       th: ["วิศวกรรมซอฟต์แวร์", "เว็บ", "โมบาย"],
@@ -45,7 +45,7 @@ export const educationData = [
       th: "กรุงเทพฯ ประเทศไทย",
       en: "Bangkok, Thailand",
     },
-    file: "/portfolio.pdf",
+    file: "/Resume_Rawipon Ponsarutwanit.pdf",
     fileKey: "portfolio",
     mapUrl: "https://maps.app.goo.gl/yTML9GN7NEAJipLJ8",
     logo: "/klw.png",

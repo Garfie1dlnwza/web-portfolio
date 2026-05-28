@@ -74,6 +74,8 @@ export const translations = {
           "Mobile application for task management and team collaboration with real-time features.",
         "uni-request":
           "Desktop application using Java (OOP & RBAC) to manage and process user requests efficiently.",
+        "nisit-d-den":
+          "Document management and award-tracking system for outstanding students (Nisit D Den). Features clear document status display and automated email notifications to streamline university operations.",
       },
     },
     skillsSection: {
@@ -160,6 +162,8 @@ export const translations = {
           "แอปพลิเคชันมือถือสำหรับจัดการงานและทำงานร่วมกันในทีม พร้อมฟีเจอร์แบบเรียลไทม์",
         "uni-request":
           "แอปพลิเคชันเดสก์ท็อปที่ใช้ Java (OOP & RBAC) เพื่อจัดการและดำเนินการคำขอของผู้ใช้ได้อย่างมีประสิทธิภาพ",
+        "nisit-d-den":
+          "ระบบจัดการเอกสารและติดตามรางวัลสำหรับนิสิตดีเด่น มีฟีเจอร์แสดงสถานะเอกสารอย่างชัดเจน และระบบแจ้งเตือนอัตโนมัติผ่านอีเมล เพื่อให้การดำเนินการของมหาวิทยาลัยมีความเป็นระบบมากยิ่งขึ้น",
       },
     },
     skillsSection: {

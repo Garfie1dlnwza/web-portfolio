@@ -102,7 +102,7 @@ export const ExperienceSection = () => {
                               <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-neutral-100 dark:bg-neutral-900 dark:ring-neutral-800">
                                 <Image
                                   src={highlight.logo}
-                                  alt={highlight.project}
+                                  alt={highlight.project[language]}
                                   width={48}
                                   height={48}
                                   className="h-full w-full object-contain"
