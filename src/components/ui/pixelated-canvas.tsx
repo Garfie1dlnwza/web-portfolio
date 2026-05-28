@@ -108,6 +108,7 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
   const pointerInsideRef = React.useRef<boolean>(false);
   const activityRef = React.useRef<number>(0);
   const activityTargetRef = React.useRef<number>(0);
+  const cleanupRef = React.useRef<(() => void) | null>(null);
 
   React.useEffect(() => {
     let isCancelled = false;
@@ -199,9 +200,9 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         const ix = Math.max(0, Math.min(offscreen.width - 1, px));
         const iy = Math.max(0, Math.min(offscreen.height - 1, py));
         const i = iy * stride + ix * 4;
-        const rr = data[i];
-        const gg = data[i + 1];
-        const bb = data[i + 2];
+        const rr = data[i] ?? 0;
+        const gg = data[i + 1] ?? 0;
+        const bb = data[i + 2] ?? 0;
         return 0.2126 * rr + 0.7152 * gg + 0.0722 * bb;
       };
 
@@ -227,9 +228,9 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
           if (c.startsWith("#")) {
             const hex = c.slice(1);
             if (hex.length === 3) {
-              const r = parseInt(hex[0] + hex[0], 16);
-              const g = parseInt(hex[1] + hex[1], 16);
-              const b = parseInt(hex[2] + hex[2], 16);
+              const r = parseInt((hex[0] ?? "0") + (hex[0] ?? "0"), 16);
+              const g = parseInt((hex[1] ?? "0") + (hex[1] ?? "0"), 16);
+              const b = parseInt((hex[2] ?? "0") + (hex[2] ?? "0"), 16);
               return [r, g, b];
             }
             const r = parseInt(hex.slice(0, 2), 16);
@@ -237,12 +238,12 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
             const b = parseInt(hex.slice(4, 6), 16);
             return [r, g, b];
           }
-          const m = c.match(/rgb\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\)/i);
+          const m = /rgb\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\)/i.exec(c);
           if (m)
-            return [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10)];
+            return [parseInt(m[1] ?? "0", 10), parseInt(m[2] ?? "0", 10), parseInt(m[3] ?? "0", 10)];
           return null;
         };
-        tintRGB = parse(tintColor) as any;
+        tintRGB = parse(tintColor);
       }
 
       for (let y = 0; y < offscreen.height; y += cellSize) {
@@ -258,10 +259,10 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
           let a = 0;
           if (!sampleAverage) {
             const idx = cy * stride + cx * 4;
-            r = data[idx];
-            g = data[idx + 1];
-            b = data[idx + 2];
-            a = data[idx + 3] / 255;
+            r = data[idx] ?? 0;
+            g = data[idx + 1] ?? 0;
+            b = data[idx + 2] ?? 0;
+            a = (data[idx + 3] ?? 0) / 255;
           } else {
             let count = 0;
             for (let oy = -1; oy <= 1; oy++) {
@@ -269,10 +270,10 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
                 const sx = Math.max(0, Math.min(offscreen.width - 1, cx + ox));
                 const sy = Math.max(0, Math.min(offscreen.height - 1, cy + oy));
                 const sIdx = sy * stride + sx * 4;
-                r += data[sIdx];
-                g += data[sIdx + 1];
-                b += data[sIdx + 2];
-                a += data[sIdx + 3] / 255;
+                r += data[sIdx] ?? 0;
+                g += data[sIdx + 1] ?? 0;
+                b += data[sIdx + 2] ?? 0;
+                a += (data[sIdx + 3] ?? 0) / 255;
                 count++;
               }
             }
@@ -498,7 +499,7 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
         canvasEl.removeEventListener("pointerleave", onPointerLeave);
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
       };
-      (img as any)._cleanup = cleanup;
+      cleanupRef.current = cleanup;
     };
 
     img.onerror = () => {
@@ -515,13 +516,13 @@ export const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({
       return () => {
         isCancelled = true;
         window.removeEventListener("resize", onResize);
-        if ((img as any)._cleanup) (img as any)._cleanup();
+        cleanupRef.current?.();
       };
     }
 
     return () => {
       isCancelled = true;
-      if ((img as any)._cleanup) (img as any)._cleanup();
+      cleanupRef.current?.();
     };
   }, [
     src,
