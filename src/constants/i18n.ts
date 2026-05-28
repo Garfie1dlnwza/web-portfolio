@@ -49,11 +49,41 @@ export const translations = {
       description:
         "My learning journey and the key foundations that have shaped who I am.",
     },
+    experienceSection: {
+      title: "Experience",
+      description:
+        "Career journey, growth, and the work I'm proud to have built.",
+      keyContributions: "Key Contributions",
+    },
     educationCard: {
       current: "Current",
       file: {
         cv: "Download CV",
         portfolio: "Download Portfolio",
+      },
+    },
+    projectSection: {
+      title: "Projects",
+      description: "A selection of projects that I'm proud of.",
+      projects: {
+        kasetfair:
+          "Full-stack web app for booth management with a randomized allocation algorithm to ensure equitable selection.",
+        checkbill:
+          "Web application for splitting bills with intuitive UX/UI and real-time-like interactions.",
+        teammate:
+          "Mobile application for task management and team collaboration with real-time features.",
+        "uni-request":
+          "Desktop application using Java (OOP & RBAC) to manage and process user requests efficiently.",
+      },
+    },
+    skillsSection: {
+      title: "My Skills",
+      description: "The tools and technologies I use to create quality work.",
+      categories: {
+        languages: "Languages",
+        frontend: "Frontend",
+        backendDb: "Backend & DB",
+        toolsDesign: "Tools & Design",
       },
     },
   },
@@ -106,11 +136,41 @@ export const translations = {
       title: "การศึกษา",
       description: "เส้นทางการเรียนรู้และรากฐานสำคัญที่หล่อหลอมตัวตนของผม",
     },
+    experienceSection: {
+      title: "ประสบการณ์",
+      description: "เส้นทางการทำงาน การเติบโต และผลงานที่ภาคภูมิใจ",
+      keyContributions: "ผลงานเด่น",
+    },
     educationCard: {
       current: "ปัจจุบัน",
       file: {
         cv: "ดาวน์โหลด CV",
         portfolio: "ดาวน์โหลด Portfolio",
+      },
+    },
+    projectSection: {
+      title: "ผลงาน",
+      description: "ตัวอย่างโปรเจคที่ผมภูมิใจนำเสนอ",
+      projects: {
+        kasetfair:
+          "เว็บแอปพลิเคชัน Full-stack สำหรับจัดการบูธงานเกษตรแฟร์ พร้อมอัลกอริทึมสุ่มจัดสรรพื้นที่เพื่อความเท่าเทียม",
+        checkbill:
+          "เว็บแอปพลิเคชันสำหรับแชร์บิลค่าอาหาร UX/UI ที่ใช้งานง่ายและโต้ตอบได้แบบเรียลไทม์",
+        teammate:
+          "แอปพลิเคชันมือถือสำหรับจัดการงานและทำงานร่วมกันในทีม พร้อมฟีเจอร์แบบเรียลไทม์",
+        "uni-request":
+          "แอปพลิเคชันเดสก์ท็อปที่ใช้ Java (OOP & RBAC) เพื่อจัดการและดำเนินการคำขอของผู้ใช้ได้อย่างมีประสิทธิภาพ",
+      },
+    },
+    skillsSection: {
+      title: "ทักษะ",
+      description:
+        "เครื่องมือและเทคโนโลยีที่ผมเลือกใช้เพื่อสร้างสรรค์ผลงานคุณภาพ",
+      categories: {
+        languages: "ภาษา",
+        frontend: "ฟรอนท์เอนด์",
+        backendDb: "แบ็กเอนด์และฐานข้อมูล",
+        toolsDesign: "เครื่องมือและการออกแบบ",
       },
     },
   },

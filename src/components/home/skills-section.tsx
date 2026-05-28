@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/components/language-provider";
 import { skills } from "@/constants/skills";
 import { Code2, LayoutTemplate, Database, Wrench, Cpu } from "lucide-react";
 
@@ -7,13 +8,15 @@ const categoryIcons: Record<
   string,
   React.ComponentType<{ className?: string }>
 > = {
-  Languages: Code2,
-  Frontend: LayoutTemplate,
-  "Backend & DB": Database,
-  "Tools & Design": Wrench,
+  languages: Code2,
+  frontend: LayoutTemplate,
+  backendDb: Database,
+  toolsDesign: Wrench,
 };
 
 export const SkillsSection = () => {
+  const { t } = useI18n();
+
   return (
     <section
       id="skills"
@@ -26,21 +29,21 @@ export const SkillsSection = () => {
             <Cpu className="h-12 w-12" />
           </div>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-100">
-            Tech Stack & Skills
+            {t.skillsSection.title}
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-neutral-500 dark:text-neutral-400">
-            เครื่องมือและเทคโนโลยีที่ผมเลือกใช้เพื่อสร้างสรรค์ผลงานคุณภาพ
+            {t.skillsSection.description}
           </p>
         </div>
 
         {/* Grid Layout */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 xl:gap-8">
-          {Object.entries(skills).map(([category, items]) => {
-            const CategoryIcon = categoryIcons[category] ?? Code2;
+          {skills.map((skillCategory) => {
+            const CategoryIcon = categoryIcons[skillCategory.id] ?? Code2;
 
             return (
               <div
-                key={category}
+                key={skillCategory.id}
                 className="group relative overflow-hidden rounded-3xl border border-neutral-200/50 bg-white/40 p-8 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/10 dark:border-neutral-800/50 dark:bg-neutral-900/20 dark:hover:border-amber-500/20"
               >
                 {/* Decorative Gradient Overlay on Hover */}
@@ -53,13 +56,17 @@ export const SkillsSection = () => {
                       <CategoryIcon className="h-6 w-6 text-neutral-600 transition-colors group-hover:text-amber-600 dark:text-neutral-400 dark:group-hover:text-amber-400" />
                     </div>
                     <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
-                      {category}
+                      {
+                        t.skillsSection.categories[
+                          skillCategory.id as keyof typeof t.skillsSection.categories
+                        ]
+                      }
                     </h3>
                   </div>
 
                   {/* Skills Grid/Flex */}
                   <div className="flex flex-wrap gap-3">
-                    {items.map((skill) => (
+                    {skillCategory.items.map((skill) => (
                       <div
                         key={skill.name}
                         className="group/icon relative flex items-center gap-2.5 overflow-hidden rounded-xl border border-neutral-200/60 bg-white/50 px-4 py-2.5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:bg-white hover:shadow-md dark:border-neutral-700/60 dark:bg-neutral-800/50 dark:hover:border-neutral-600 dark:hover:bg-neutral-800"
