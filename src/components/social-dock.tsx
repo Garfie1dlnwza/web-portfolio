@@ -18,15 +18,22 @@ const Tooltip = ({ children }: { children: React.ReactNode }) => {
       // Type guard for displayName
       const type = child.type as { displayName?: string };
       if (type.displayName === "TooltipTrigger") {
-        return React.cloneElement(child, {
-          onMouseEnter: () => setIsVisible(true),
-          onMouseLeave: () => setIsVisible(false),
-        });
+        return React.cloneElement(
+          child as React.ReactElement<{
+            onMouseEnter?: React.MouseEventHandler;
+            onMouseLeave?: React.MouseEventHandler;
+          }>,
+          {
+            onMouseEnter: () => setIsVisible(true),
+            onMouseLeave: () => setIsVisible(false),
+          },
+        );
       }
       if (type.displayName === "TooltipContent") {
-        return React.cloneElement(child, {
-          isVisible,
-        });
+        return React.cloneElement(
+          child as React.ReactElement<{ isVisible?: boolean }>,
+          { isVisible },
+        );
       }
     }
     return child;
