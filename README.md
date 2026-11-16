@@ -45,9 +45,10 @@ A personal portfolio website built to showcase my experience, projects, and tech
 ## Experience Highlights
 
 ### ServiceNow Associate Consultant Intern · Fujitsu (Thailand) Co., Ltd.
-- ITSM process configuration (Incident, Problem, Change Management)
-- CMDB build-out and asset management
-- ITIL v4 framework implementation for SLA tracking and service catalog
+- Service Catalog items and multi-level approval workflows
+- Report & dashboard solution design (operational, executive, mobile)
+- UAT (incl. RPA-fulfilled tasks), contract management app support
+- ITSM SOPs, user manuals and client training
 
 ### Full-Stack Developer Intern · Office of Computer Service, KU (Apr–Jul 2025)
 - **KU Activity & Club** — central hub for student activities (Next.js, TypeScript, Express)
@@ -63,8 +64,13 @@ A personal portfolio website built to showcase my experience, projects, and tech
 
 | Project | Stack | Description |
 |---|---|---|
-| Kasetfair Management | Go Fiber, Next.js, PostgreSQL | Booth management with randomized allocation algorithm |
+| WEKU — KU Super App | Flutter, Go (Gin), Next.js, MongoDB, Redis | University super app (member card, schedule, check-in, voting, news, map, push) with CMS and KU ALL-Login |
+| KU Fame & Fund | Next.js, PostgreSQL, Redis, Docker | Awards, scholarships and funding platform with multi-stage review workflow (successor of Nisit D Den) |
+| RuayMaiWai POS | Next.js, tRPC, MongoDB, PWA | Offline-tolerant POS for fair pop-up shops with PromptPay/Stripe and profit sharing |
 | CheckBill | Next.js, React | Bill-splitting web app with real-time-like UX |
+| German-OneDay POS | Next.js, tRPC, Prisma, PostgreSQL | POS for a one-day beverage shop with recipe-based stock tracking |
+| Kasetfair Management | Go Fiber, Next.js, PostgreSQL | Booth management with randomized allocation algorithm |
+| Stock Portfolio Tracker | Python, FastAPI, Discord bot, SQLite | Portfolio tracker web app with Discord login, price-alert bot and macOS widget |
 | Teammate | Flutter, Firebase | Mobile app for task management and team collaboration |
 | University Online Request | Java (OOP, RBAC) | Desktop app for processing user requests |
 

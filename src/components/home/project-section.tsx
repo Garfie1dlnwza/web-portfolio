@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ExternalLink, Github, FolderGit2 } from "lucide-react";
 import { projectData } from "@/constants/projects";
 
+const hasUrl = (url: string) => url !== "" && url !== "#";
+
 export const ProjectSection = () => {
   const { t } = useI18n();
 
@@ -40,33 +42,61 @@ export const ProjectSection = () => {
             >
               {/* Image / Placeholder */}
               <div className="relative h-48 w-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-                {/* ถ้ามีรูปภาพจริง ให้ uncomment บรรทัดล่าง */}
-                {/* <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" /> */}
-
-                {/* Placeholder ในกรณีไม่มีรูป */}
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-neutral-200 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900">
-                  <FolderGit2 className="h-12 w-12 text-neutral-300 dark:text-neutral-700" />
-                </div>
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : project.logo ? (
+                  <div
+                    className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${project.cover ?? "from-neutral-100 to-neutral-200"}`}
+                  >
+                    <div className="relative h-32 w-3/4 transition-transform duration-700 group-hover:scale-105">
+                      <Image
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        fill
+                        sizes="(min-width: 768px) 40vw, 75vw"
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-neutral-200 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900">
+                    <FolderGit2 className="h-12 w-12 text-neutral-300 dark:text-neutral-700" />
+                  </div>
+                )}
 
                 {/* Overlay Links */}
-                <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/40 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-                  <Link
-                    href={project.github}
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-neutral-900 transition-transform hover:scale-110"
-                    title="View Code"
-                  >
-                    <Github className="h-5 w-5" />
-                  </Link>
-                  {project.link && project.link !== "#" && (
-                    <Link
-                      href={project.link}
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-white transition-transform hover:scale-110"
-                      title="Live Demo"
-                    >
-                      <ExternalLink className="h-5 w-5" />
-                    </Link>
-                  )}
-                </div>
+                {(hasUrl(project.github) || hasUrl(project.link)) && (
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/40 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                    {hasUrl(project.github) && (
+                      <Link
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-neutral-900 transition-transform hover:scale-110"
+                        title="View Code"
+                      >
+                        <Github className="h-5 w-5" />
+                      </Link>
+                    )}
+                    {hasUrl(project.link) && (
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-white transition-transform hover:scale-110"
+                        title="Live Demo"
+                      >
+                        <ExternalLink className="h-5 w-5" />
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -75,7 +105,7 @@ export const ProjectSection = () => {
                   <h3 className="text-xl font-bold text-neutral-900 transition-colors group-hover:text-amber-600 dark:text-neutral-100 dark:group-hover:text-amber-500">
                     {project.title}
                   </h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                     {
                       t.projectSection.projects[
                         project.id as keyof typeof t.projectSection.projects
