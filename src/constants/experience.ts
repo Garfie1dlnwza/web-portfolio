@@ -41,38 +41,48 @@ export const experienceData: ExperienceItem[] = [
       th: "กรุงเทพฯ ประเทศไทย",
     },
     description: {
-      en: "Implementing and configuring enterprise ITSM solutions on the ServiceNow platform. Applying ITIL frameworks to streamline IT service management processes and configuring CMDB to maintain accurate asset records across the organization.",
-      th: "ติดตั้งและกำหนดค่าโซลูชัน ITSM ระดับองค์กรบนแพลตฟอร์ม ServiceNow นำกรอบงาน ITIL มาใช้ปรับปรุงกระบวนการจัดการบริการ IT และกำหนดค่า CMDB เพื่อดูแลข้อมูล Asset ขององค์กรให้ถูกต้องแม่นยำ",
+      en: "Delivering ServiceNow ITSM implementations for enterprise clients in banking and financial services — from requirement gathering and solution design to configuration, UAT, and end-user training. Work spans Service Catalog, Incident, Change, Asset Management, and reporting.",
+      th: "พัฒนาและติดตั้งระบบ ServiceNow ITSM ให้ลูกค้าองค์กรกลุ่มธนาคารและบริการทางการเงิน ตั้งแต่เก็บ Requirement ออกแบบโซลูชัน กำหนดค่าระบบ ทดสอบ UAT ไปจนถึงอบรมผู้ใช้งาน ครอบคลุม Service Catalog, Incident, Change, Asset Management และรายงาน",
     },
     highlights: [
       {
         project: {
-          en: "ITSM Process Configuration",
-          th: "การกำหนดค่ากระบวนการ ITSM",
+          en: "Service Catalog & Approval Workflows",
+          th: "Service Catalog และ Approval Workflow",
         },
         detail: {
-          en: "Configured Incident, Problem, and Change Management modules on ServiceNow following ITIL v4 best practices to improve service delivery efficiency.",
-          th: "กำหนดค่าโมดูล Incident, Problem และ Change Management บน ServiceNow ตามแนวปฏิบัติ ITIL v4 เพื่อเพิ่มประสิทธิภาพการให้บริการ",
+          en: "Designed and configured service request catalog items with multi-level approval flows — producing mock-UI specs, grouping hundreds of requests into a structured catalog with Python scripts, and preparing deployment checklists.",
+          th: "ออกแบบและกำหนดค่า Catalog Item สำหรับคำขอบริการพร้อม Approval Flow หลายระดับ จัดทำ Mock UI จัดกลุ่มคำขอหลายร้อยรายการเป็น Catalog ที่เป็นระบบด้วยสคริปต์ Python และเตรียม Deployment Checklist",
         },
       },
       {
         project: {
-          en: "CMDB Configuration & Asset Management",
-          th: "การกำหนดค่า CMDB และการจัดการ Asset",
+          en: "Reports & Dashboards",
+          th: "รายงานและแดชบอร์ด",
         },
         detail: {
-          en: "Built and maintained the Configuration Management Database (CMDB) to track CIs, map service dependencies, and support accurate impact analysis.",
-          th: "สร้างและดูแล Configuration Management Database (CMDB) เพื่อติดตาม CI จัดทำ Service Dependencies และรองรับการวิเคราะห์ผลกระทบที่แม่นยำ",
+          en: "Wrote the solution design and user stories for reporting, and built operational, executive, and mobile dashboards to track SLAs and service performance.",
+          th: "เขียน Solution Design และ User Stories ด้านรายงาน และสร้างแดชบอร์ดระดับปฏิบัติการ ผู้บริหาร และบนมือถือ เพื่อติดตาม SLA และประสิทธิภาพการให้บริการ",
         },
       },
       {
         project: {
-          en: "ITIL Framework Implementation",
-          th: "การประยุกต์ใช้กรอบงาน ITIL",
+          en: "UAT, RPA Integration & Contract Management",
+          th: "UAT, การเชื่อมต่อ RPA และระบบจัดการสัญญา",
         },
         detail: {
-          en: "Applied ITIL service lifecycle concepts to align IT services with business needs, supporting SLA tracking and service catalog development.",
-          th: "ประยุกต์ใช้แนวคิด ITIL Service Lifecycle เพื่อให้บริการ IT สอดคล้องกับความต้องการทางธุรกิจ รวมถึงติดตาม SLA และพัฒนา Service Catalog",
+          en: "Authored and ran UAT test cases for service requests, including RPA-fulfilled catalog tasks, and supported requirements and FAQ mapping for a custom contract management application.",
+          th: "เขียนและรัน UAT Test Case ของคำขอบริการ รวมถึงงานที่ดำเนินการอัตโนมัติด้วย RPA และช่วยเก็บ Requirement และจัดทำ FAQ Mapping ให้แอปจัดการสัญญาที่พัฒนาขึ้นเฉพาะ",
+        },
+      },
+      {
+        project: {
+          en: "SOPs, User Guides & Training",
+          th: "SOP คู่มือ และการอบรม",
+        },
+        detail: {
+          en: "Produced ITSM SOPs, end-user and fulfiller manuals, and train-the-trainer materials, and delivered Incident and Service Request training to client teams.",
+          th: "จัดทำ SOP ด้าน ITSM คู่มือผู้ใช้และผู้ดำเนินการ และเอกสาร Train the Trainer พร้อมอบรมการใช้งาน Incident และ Service Request ให้ทีมลูกค้า",
         },
       },
     ],
